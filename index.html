@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000000;
+        }
+        .container {
+            text-align: center;
+            background-color: #333333;
+            color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #555555;
+            color: #ffffff;
+        }
+        .results {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .results div {
+            margin-bottom: 0;
+        }
+        .highlight {
+            color: rgb(255, 0, 0);
+        }
+        .sigis{
+            color: rgb(0, 255, 0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Programa - <span class="highlight">MARTA</span> Counteris</h1>
+        <textarea id="textInput" placeholder="Tekstas"></textarea>
+        <div class="results">
+            <div id="charCount">Simboliu: 0</div>
+            <div id="wordCount">Žodžių: 0</div>
+            <div id="sentenceCount">Sakinių: 0</div>
+        </div>
+        <h1><span class="sigis">Svetaine paruose</span></h1>
+        <h1>Garoldas, Ruslanas, Armandas</h1>
+        <h1>Dovydas ir Domas</h1>
+    </div>
+    <script>
+        function updateCounts() {
+            const text = document.getElementById('textInput').value;
+
+            // Character count
+            const charCount = text.length;
+
+            // Word count
+            const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+
+            // Sentence count (approximation based on punctuation)
+            const sentenceCount = text.trim() === '' ? 0 : text.split(/[.!?]+/).filter(Boolean).length;
+
+            // Paragraph count
+            const paragraphCount = text.trim() === '' ? 0 : text.split(/\n+/).filter(Boolean).length;
+
+            document.getElementById('charCount').innerText = `Simboliu: ${charCount}`;
+            document.getElementById('wordCount').innerText = `Žodžių: ${wordCount}`;
+            document.getElementById('sentenceCount').innerText = `Sakinių: ${sentenceCount}`;
+        }
+
+        document.getElementById('textInput').addEventListener('input', updateCounts);
+    </script>
+</body>
+</html>
